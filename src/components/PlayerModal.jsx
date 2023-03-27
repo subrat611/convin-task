@@ -5,7 +5,9 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export default function PlayerModal() {
   const [cardItemLink, setCardItemLink] = useState(null);
+  const [duration, setDuration] = useState(null);
   const modal = useRef(null);
+  const videoIframe = useRef(null);
   const navigate = useNavigate();
   const { bucketId, itemId } = useParams();
   const buckets = useSelector((state) => state.bucket);
@@ -28,7 +30,15 @@ export default function PlayerModal() {
     });
   };
 
-  const getIframeDuration = () => {};
+  const getIframeDuration = () => {
+    const videoIframeRef = videoIframe.current;
+    console.log(videoIframeRef);
+    const video = videoIframeRef.contentWindow.document.querySelector("video");
+    console.log(video);
+
+    setDuration(video.duration);
+    console.log(duration);
+  };
 
   const closeModal = () => {
     navigate("/", { replace: true });
@@ -37,6 +47,7 @@ export default function PlayerModal() {
     <div className="modal-wrapper">
       <div className="modal" ref={modal}>
         <iframe
+          ref={videoIframe}
           src={cardItemLink}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
