@@ -1,5 +1,8 @@
 import { useDispatch } from "react-redux";
-import { removeCardFromBucket } from "../store/bucketSlice";
+import {
+  editCardItemFomBucket,
+  removeCardFromBucket,
+} from "../store/bucketSlice";
 import CardItem from "./CardItem";
 
 export default function CardItems({ cardItems, bucketId }) {
@@ -14,6 +17,17 @@ export default function CardItems({ cardItems, bucketId }) {
     );
   };
 
+  const editItemFromBucket = (itemId, itemTitle, itemLink) => {
+    dispatch(
+      editCardItemFomBucket({
+        itemId,
+        bucketId,
+        itemTitle,
+        itemLink,
+      })
+    );
+  };
+
   return (
     <div className="card-bucket-items-wrapper">
       {cardItems.map(({ title, link, id }) => (
@@ -23,6 +37,7 @@ export default function CardItems({ cardItems, bucketId }) {
           cardlink={link}
           itemId={id}
           handleDelete={removeItemFromBucket}
+          handleEdit={editItemFromBucket}
         />
       ))}
     </div>

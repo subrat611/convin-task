@@ -64,6 +64,22 @@ const bucketSlice = createSlice({
           : item
       );
     },
+    editCardItemFomBucket(state, actions) {
+      const { itemId, bucketId, itemTitle, itemLink } = actions.payload;
+
+      return state.map((item) =>
+        item.id === bucketId
+          ? {
+              ...item,
+              items: item.items.map((item) =>
+                item.id === itemId
+                  ? { ...item, title: itemTitle, link: itemLink }
+                  : item
+              ),
+            }
+          : item
+      );
+    },
     removeCardFromBucket(state, actions) {
       const { itemId, bucketId } = actions.payload;
       return state.map((item) =>
@@ -75,7 +91,11 @@ const bucketSlice = createSlice({
   },
 });
 
-export const { renameBucket, addCardToBucket, removeCardFromBucket } =
-  bucketSlice.actions;
+export const {
+  renameBucket,
+  addCardToBucket,
+  editCardItemFomBucket,
+  removeCardFromBucket,
+} = bucketSlice.actions;
 
 export default bucketSlice.reducer;
