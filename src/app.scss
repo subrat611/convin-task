@@ -72,6 +72,17 @@
             text-transform: capitalize;
           }
 
+          .card-item-title-edit,
+          .card-item-link-edit {
+            all: unset;
+            padding: 0.5rem 0 0.5rem 0.1rem;
+            width: 100%;
+            margin: 0.5em 0;
+            background-color: #ffffff86;
+            border-radius: 3px;
+            border: 1px solid #b3b3b386;
+          }
+
           .card-item-controller {
             .btn-ant {
               // all: unset;
