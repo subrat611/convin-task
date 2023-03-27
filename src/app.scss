@@ -14,7 +14,7 @@
     backdrop-filter: blur(2px);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 
     .modal {
       height: 400px;
@@ -104,16 +104,18 @@
           padding: 2rem 0;
           display: flex;
           justify-content: flex-start;
-          align-items: center;
+          align-items: first baseline;
           flex-wrap: wrap;
 
           .card-item {
             background-color: #ffffffde;
             box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
             border-radius: 7px;
-            padding: 1rem;
-            width: 200px;
+            padding: 1.1rem;
+            max-width: 350px;
+            width: 90%;
             margin: 1rem 1.5rem 1rem 0;
+            word-wrap: break-word;
 
             &-title {
               font-size: 1.2rem;
