@@ -64,9 +64,18 @@ const bucketSlice = createSlice({
           : item
       );
     },
+    removeCardFromBucket(state, actions) {
+      const { itemId, bucketId } = actions.payload;
+      return state.map((item) =>
+        item.id === bucketId
+          ? { ...item, items: item.items.filter((item) => item.id !== itemId) }
+          : item
+      );
+    },
   },
 });
 
-export const { renameBucket, addCardToBucket } = bucketSlice.actions;
+export const { renameBucket, addCardToBucket, removeCardFromBucket } =
+  bucketSlice.actions;
 
 export default bucketSlice.reducer;

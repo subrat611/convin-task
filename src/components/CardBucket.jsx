@@ -65,7 +65,7 @@ export default function CardBucket({ title, cardItems, cardId, setInputForm }) {
           Add card to bucket
         </Button>
       </div>
-      <CardItems cardItems={cardItems} />
+      <CardItems bucketId={cardId} cardItems={cardItems} />
     </div>
   );
 }
