@@ -28,6 +28,8 @@ export default function PlayerModal() {
     });
   };
 
+  const getIframeDuration = () => {};
+
   const closeModal = () => {
     navigate("/", { replace: true });
   };
@@ -37,7 +39,8 @@ export default function PlayerModal() {
         <iframe
           src={cardItemLink}
           title="YouTube video player"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          onLoad={getIframeDuration}
         ></iframe>
         <Button
           type="primary"
