@@ -36,6 +36,7 @@ export default function CardItems({ cardItems, bucketId }) {
           cardtitle={title}
           cardlink={link}
           itemId={id}
+          bucketId={bucketId}
           handleDelete={removeItemFromBucket}
           handleEdit={editItemFromBucket}
         />

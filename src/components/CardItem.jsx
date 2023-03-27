@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export default function CardItem({
   cardtitle,
   cardlink,
   itemId,
+  bucketId,
   handleDelete,
   handleEdit,
 }) {
@@ -14,17 +16,25 @@ export default function CardItem({
     link: cardlink,
   });
 
-  const handleEditItem = () => {
+  const navigate = useNavigate();
+
+  const handleEditItem = (e) => {
+    e.stopPropagation();
     setEditItemInfo((prev) => ({ ...prev, isEdit: true }));
   };
 
-  const handleEditItemDone = () => {
+  const handleEditItemDone = (e) => {
+    e.stopPropagation();
+    console.log("y");
     setEditItemInfo((prev) => ({ ...prev, isEdit: false }));
     handleEdit(itemId, editItemInfo.text, editItemInfo.link);
   };
 
   return (
-    <div className="card-item">
+    <div
+      className="card-item"
+      onClick={() => navigate(`/${bucketId}/${itemId}`)}
+    >
       {editItemInfo.isEdit ? (
         <input
           type="text"

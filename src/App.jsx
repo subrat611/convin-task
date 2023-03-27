@@ -8,7 +8,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Bucket />}>
-        <Route path="/1" element={<PlayerModal />} />
+        <Route path="/:bucketId/:itemId" element={<PlayerModal />} />
       </Route>
     </Routes>
   );
