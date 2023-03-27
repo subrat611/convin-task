@@ -1,93 +1,141 @@
-.app-wrapper {
-  width: 100%;
-  height: 100%;
+.main-wrapper {
+  position: relative;
 
-  .card-buckets {
+  .modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: #0f0f0f60;
+    backdrop-filter: blur(2px);
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
 
-    .create-card-form-wrapper {
-      margin-top: 1rem;
+    .modal {
+      height: 400px;
+      width: 800px;
+      margin: 5rem auto;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      max-width: 500px !important;
-      overflow: hidden;
+      align-items: center;
 
-      @media (min-width: 300px) {
-        width: 90% !important;
+      @media (max-width: 815px) {
+        height: 300px;
+        width: 500px;
       }
-      form {
-        padding: 1rem;
-        flex: 1;
-        border-radius: 7px;
-        background-color: #ffffffde;
-        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+      @media (max-width: 510px) {
+        height: auto;
+        width: 90%;
+      }
+
+      .close-modal-btn {
+        margin: 1rem 0;
+        font-weight: 500;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
       }
     }
+  }
 
-    .card-bucket-wrapper {
-      font-family: "Roboto", sans-serif;
-      width: 80%;
+  .bucket-wrapper {
+    width: 100%;
+    height: 100%;
 
-      .card-bucket-header {
-        .card-bucket-title-edit {
-          all: unset;
-          display: block;
-          padding: 0.5rem 0.5rem;
+    .card-buckets {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .create-card-form-wrapper {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 500px !important;
+        overflow: hidden;
+
+        @media (min-width: 300px) {
+          width: 90% !important;
+        }
+        form {
+          padding: 1rem;
+          flex: 1;
+          border-radius: 7px;
           background-color: #ffffffde;
-          font-size: 1.1rem;
-          text-transform: capitalize;
-        }
-
-        .card-bucket-title {
-          letter-spacing: 0.04em;
-          font-weight: 500;
-          text-transform: capitalize;
-        }
-
-        .btn-rename {
-          margin: 1rem 0.5rem 0 0;
+          box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
         }
       }
 
-      .card-bucket-items-wrapper {
-        padding: 2rem 0;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-wrap: wrap;
+      .card-bucket-wrapper {
+        font-family: "Roboto", sans-serif;
+        width: 80%;
 
-        .card-item {
-          background-color: #ffffffde;
-          box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-          border-radius: 7px;
-          padding: 1rem;
-          width: 200px;
-          margin: 1rem 1.5rem 1rem 0;
-
-          &-title {
-            font-size: 1.2rem;
+        .card-bucket-header {
+          .card-bucket-title-edit {
+            all: unset;
+            display: block;
+            padding: 0.5rem 0.5rem;
+            background-color: #ffffffde;
+            font-size: 1.1rem;
             text-transform: capitalize;
           }
 
-          .card-item-title-edit,
-          .card-item-link-edit {
-            all: unset;
-            padding: 0.5rem 0 0.5rem 0.1rem;
-            width: 100%;
-            margin: 0.5em 0;
-            background-color: #ffffff86;
-            border-radius: 3px;
-            border: 1px solid #b3b3b386;
+          .card-bucket-title {
+            letter-spacing: 0.04em;
+            font-weight: 500;
+            text-transform: capitalize;
           }
 
-          .card-item-controller {
-            .btn-ant {
-              // all: unset;
-              // padding: 0.2rem 0.5rem;
-              margin: 0 0.5rem 0 0;
+          .btn-rename {
+            margin: 1rem 0.5rem 0 0;
+          }
+        }
+
+        .card-bucket-items-wrapper {
+          padding: 2rem 0;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-wrap: wrap;
+
+          .card-item {
+            background-color: #ffffffde;
+            box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+            border-radius: 7px;
+            padding: 1rem;
+            width: 200px;
+            margin: 1rem 1.5rem 1rem 0;
+
+            &-title {
+              font-size: 1.2rem;
+              text-transform: capitalize;
+            }
+
+            .card-item-title-edit,
+            .card-item-link-edit {
+              all: unset;
+              padding: 0.5rem 0 0.5rem 0.1rem;
+              width: 100%;
+              margin: 0.5em 0;
+              background-color: #ffffff86;
+              border-radius: 3px;
+              border: 1px solid #b3b3b386;
+            }
+
+            .card-item-controller {
+              .btn-ant {
+                // all: unset;
+                // padding: 0.2rem 0.5rem;
+                margin: 0 0.5rem 0 0;
+              }
             }
           }
         }
