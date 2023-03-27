@@ -45,6 +45,7 @@ export default function CardItem({
           onChange={(e) =>
             setEditItemInfo({ ...editItemInfo, text: e.target.value })
           }
+          onClick={(e) => e.stopPropagation()}
         />
       ) : (
         <p className="card-item-title">{cardtitle}</p>
@@ -59,6 +60,7 @@ export default function CardItem({
           onChange={(e) =>
             setEditItemInfo({ ...editItemInfo, link: e.target.value })
           }
+          onClick={(e) => e.stopPropagation()}
         />
       ) : (
         <p className="card-item-link">{cardlink}</p>
@@ -77,7 +79,14 @@ export default function CardItem({
             Done
           </Button>
         )}
-        <Button type="primary" danger onClick={() => handleDelete(itemId)}>
+        <Button
+          type="primary"
+          danger
+          onClick={(e) => {
+            e.stopPropagation();
+            handleDelete(itemId);
+          }}
+        >
           Delete
         </Button>
       </div>

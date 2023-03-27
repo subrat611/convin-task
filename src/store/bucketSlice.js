@@ -5,34 +5,59 @@ const bucketSlice = createSlice({
   initialState: [
     {
       id: 1,
-      title: "education",
+      title: "education videos",
       items: [
         {
           id: 1,
-          title: "science",
-          link: "www.instagram.com",
+          title: "what is an earthquake",
+          link: "https://www.youtube.com/embed/dJpIU1rSOFY",
+        },
+        {
+          id: 2,
+          title: "top 10 technologies to learn in 2023",
+          link: "https://www.youtube.com/embed/jTX8MSw0Ufw",
         },
       ],
     },
     {
       id: 2,
-      title: "entertainment",
+      title: "entertainment videos",
       items: [
         {
           id: 1,
-          title: "science",
-          link: "www.instagram.com",
+          title: "jehda nasha",
+          link: "https://www.youtube.com/embed/6zf2dNLS-fs",
+        },
+        {
+          id: 2,
+          title: "holi returns | ashish chanchlani",
+          link: "https://www.youtube.com/embed/LxLf3G00DyM",
+        },
+        {
+          id: 3,
+          title: "indian tv shows | ft. crime petrol",
+          link: "https://www.youtube.com/embed/IlLFLAX3zEQ",
         },
       ],
     },
     {
       id: 3,
-      title: "sport",
+      title: "thoughts videos",
       items: [
         {
           id: 1,
-          title: "cricket",
-          link: "www.instagram.com",
+          title: "optimizing workspace for productivity",
+          link: "https://www.youtube.com/embed/Ze2pc6NwsHQ",
+        },
+        {
+          id: 2,
+          title: "optimizing workspace for productivity",
+          link: "https://www.youtube.com/embed/Ze2pc6NwsHQ",
+        },
+        {
+          id: 2,
+          title: "how to get your brain to focus",
+          link: "https://www.youtube.com/embed/Hu4Yvq-g7_Y",
         },
       ],
     },

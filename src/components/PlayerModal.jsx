@@ -1,16 +1,41 @@
 import { Button } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function PlayerModal() {
+  const [cardItemLink, setCardItemLink] = useState(null);
+  const modal = useRef(null);
   const navigate = useNavigate();
+  const { bucketId, itemId } = useParams();
+  const buckets = useSelector((state) => state.bucket);
+
+  useEffect(() => {
+    getCardItemInfo();
+    window.scrollTo({
+      top: modal.current.offsetTop - 100,
+      behavior: "smooth",
+    });
+  }, []);
+
+  const getCardItemInfo = () => {
+    buckets.map((bucket) => {
+      if (bucket.id == bucketId) {
+        bucket.items.map((item) =>
+          item.id == itemId ? setCardItemLink(item.link) : null
+        );
+      }
+    });
+  };
+
   const closeModal = () => {
     navigate("/", { replace: true });
   };
   return (
     <div className="modal-wrapper">
-      <div className="modal">
+      <div className="modal" ref={modal}>
         <iframe
-          src="https://www.youtube.com/embed/IyBhFma4H1A"
+          src={cardItemLink}
           title="YouTube video player"
           allow="accelerometer; autoplay; encrypted-media; gyroscope;"
         ></iframe>
