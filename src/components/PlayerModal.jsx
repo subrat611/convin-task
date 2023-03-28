@@ -1,14 +1,17 @@
+import ReactPlayer from "react-player";
 import { Button } from "antd";
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { setHistory } from "../store/historySlice";
 
 export default function PlayerModal() {
-  const [cardItemLink, setCardItemLink] = useState(null);
+  const [cardInfo, setCardInfo] = useState(null);
   const modal = useRef(null);
   const navigate = useNavigate();
   const { bucketId, itemId } = useParams();
   const buckets = useSelector((state) => state.bucket);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getCardItemInfo();
@@ -22,13 +25,19 @@ export default function PlayerModal() {
     buckets.map((bucket) => {
       if (bucket.id == bucketId) {
         bucket.items.map((item) =>
-          item.id == itemId ? setCardItemLink(item.link) : null
+          item.id == itemId
+            ? setCardInfo({ id: item.id, title: item.title, link: item.link })
+            : null
         );
       }
     });
   };
 
-  const getIframeDuration = () => {};
+  const getVideoPlayedTime = () => {
+    const date = new Date();
+    const currentTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    dispatch(setHistory({ ...cardInfo, playtime: currentTime }));
+  };
 
   const closeModal = () => {
     navigate("/", { replace: true });
@@ -36,20 +45,26 @@ export default function PlayerModal() {
   return (
     <div className="modal-wrapper">
       <div className="modal" ref={modal}>
-        <iframe
-          src={cardItemLink}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          onLoad={getIframeDuration}
-        ></iframe>
-        <Button
-          type="primary"
-          danger
-          className="close-modal-btn"
-          onClick={closeModal}
-        >
-          Close modal
-        </Button>
+        {cardInfo ? (
+          <>
+            <ReactPlayer
+              url={cardInfo.link}
+              className="react-player"
+              width="100%"
+              height="100%"
+              playing={true}
+              onReady={getVideoPlayedTime}
+            />
+            <Button
+              type="primary"
+              danger
+              className="close-modal-btn"
+              onClick={closeModal}
+            >
+              Close modal
+            </Button>
+          </>
+        ) : null}
       </div>
     </div>
   );
