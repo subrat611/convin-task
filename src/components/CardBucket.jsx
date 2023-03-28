@@ -3,13 +3,31 @@ import { useDispatch } from "react-redux";
 
 import { Button } from "antd";
 
-import { renameBucket } from "../store/bucketSlice";
+import { renameBucket, updateBucketDragDrop } from "../store/bucketSlice";
+
+import { useDrop } from "react-dnd";
 
 import CardItems from "./CardItems";
 
 export default function CardBucket({ title, cardItems, cardId, setInputForm }) {
   const [inputTitle, setinputTitle] = useState({ isEdit: false, text: title });
   const dispatch = useDispatch();
+
+  const [collectedProps, drop] = useDrop(() => ({
+    accept: "cardItem",
+    drop: (item) => dragItemToBucket(item),
+  }));
+
+  const dragItemToBucket = ({ bucketId, itemId, cardtitle, cardlink }) => {
+    collectedProps.dragInfo = {
+      bucketFromId: bucketId,
+      bucketToId: cardId,
+      itemId,
+      cardtitle,
+      cardlink,
+    };
+    dispatch(updateBucketDragDrop(collectedProps.dragInfo));
+  };
 
   const handleRename = () => {
     setinputTitle({ isEdit: true, text: title });
@@ -31,7 +49,7 @@ export default function CardBucket({ title, cardItems, cardId, setInputForm }) {
   };
 
   return (
-    <div className="card-bucket-wrapper">
+    <div className="card-bucket-wrapper" ref={drop}>
       <div className="card-bucket-header">
         {inputTitle.isEdit ? (
           <input

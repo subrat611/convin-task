@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useDrag } from "react-dnd";
 
 export default function CardItem({
   cardtitle,
@@ -18,6 +19,16 @@ export default function CardItem({
 
   const navigate = useNavigate();
 
+  const [_, drag] = useDrag(() => ({
+    type: "cardItem",
+    item: {
+      itemId,
+      cardtitle,
+      cardlink,
+      bucketId,
+    },
+  }));
+
   const handleEditItem = (e) => {
     e.stopPropagation();
     setEditItemInfo((prev) => ({ ...prev, isEdit: true }));
@@ -32,6 +43,7 @@ export default function CardItem({
 
   return (
     <div
+      ref={drag}
       className="card-item"
       onClick={() => navigate(`/${bucketId}/${itemId}`)}
     >

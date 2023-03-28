@@ -113,6 +113,35 @@ const bucketSlice = createSlice({
           : item
       );
     },
+    updateBucketDragDrop(state, actions) {
+      const { bucketFromId, bucketToId, itemId, cardtitle, cardlink } =
+        actions.payload;
+      state = state.map((bucket) =>
+        bucket.id === bucketFromId
+          ? {
+              ...bucket,
+              items: bucket.items.filter((item) => item.id !== itemId),
+            }
+          : bucket
+      );
+      state = state.map((bucket) =>
+        bucket.id === bucketToId
+          ? {
+              ...bucket,
+              items: [
+                ...bucket.items,
+                {
+                  id: bucket.items.length + 1,
+                  title: cardtitle,
+                  link: cardlink,
+                },
+              ],
+            }
+          : bucket
+      );
+
+      return state;
+    },
   },
 });
 
@@ -121,6 +150,7 @@ export const {
   addCardToBucket,
   editCardItemFomBucket,
   removeCardFromBucket,
+  updateBucketDragDrop,
 } = bucketSlice.actions;
 
 export default bucketSlice.reducer;
