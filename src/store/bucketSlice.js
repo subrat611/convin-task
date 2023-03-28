@@ -42,7 +42,7 @@ const bucketSlice = createSlice({
     },
     {
       id: 3,
-      title: "thoughts videos",
+      title: "thought videos",
       items: [
         {
           id: 1,
