@@ -10,6 +10,7 @@ function App() {
       <Route path="/" element={<Bucket />}>
         <Route path="/:bucketId/:itemId" element={<PlayerModal />} />
       </Route>
+      <Route path="/history" element={<h1>history</h1>} />
     </Routes>
   );
 }

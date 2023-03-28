@@ -1,6 +1,7 @@
+import { Button } from "antd";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 // componets
 import CardBucket from "./CardBucket";
@@ -13,6 +14,11 @@ export default function Bucket() {
   return (
     <div className="main-wrapper">
       <div className="bucket-wrapper">
+        <div className="bucket-header">
+          <Link to="/history">
+            <Button className="btn-history">History</Button>
+          </Link>
+        </div>
         {bucket.map(({ title, id, items }) => (
           <div key={id} className="card-buckets">
             {showInputForm === id ? (
