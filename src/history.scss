@@ -1,0 +1,43 @@
+.history-wrapper {
+  width: 100vw;
+  height: 100%;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: "Roboto", sans-serif;
+
+  .history-title {
+    font-weight: 400;
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+  }
+
+  .history-card {
+    background-color: #ffffffde;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    border-radius: 7px;
+    padding: 1.1rem;
+    max-width: 350px;
+    width: 80%;
+    margin: 1rem;
+    word-wrap: break-word;
+
+    &-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+
+    &-link {
+      font-size: medium;
+      font-weight: 400;
+    }
+
+    &-time {
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+  }
+}
